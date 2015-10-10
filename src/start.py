@@ -23,8 +23,6 @@ def request_create():
 @app.route('/server/vm/destroy/' , methods = ['GET'])
 def request_destroy():
 	vmID=request.args.get('vmID')
-	#print int(vmID)
-	#return str(destroy_vm.destroy(int(vmID)))
 	return jsonify(destroy_vm.destroy(int(vmID)))
 
 @app.route('/server/vm/query/' , methods = ['GET'])
@@ -70,18 +68,6 @@ def request_pmquery():
 	list12.append(pm_ram)
 	list12.append(pm_cpu)
 	os.system("rm -rf data_pm") 
-	'''bits = 32 
-	try: 
-		os.system("ssh " + pmList[pm_n] + " cat /proc/cpuinfo | grep lm ") 
-		bits = '64' 
-	except: 
-		bits = '32' 
-	substring = "64" 
-	if substring in image_path:
-		image_bit = 64 
-	else: 
-		image_bit = 32
-	''' 
 	return jsonify(capacity=list12)
 
 @app.route('/server/pm/listvms')
